@@ -1,4 +1,11 @@
 {% extends 'header.html' %} {% block content %}
+<!--Candela Gullo: Muestra mensajes al usuario (como errores o confirmaciones), 
+    usando el sistema de mensajes de Django -->
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
 <main>
     <h1 class="text-center alert alert-success " role="alert">Buscador de Pokemon</h1>
     <!--Noelia B. agrege una "alerta" para que resalte el texto  -->
@@ -56,10 +63,10 @@
             <!-- evaluar si la imagen pertenece al tipo fuego, agua o planta -->
             <!--Noelia B. Anulamos la linea donde se da color el marco gerenal de las tarjetas antes de ser clasificadas para que no se superpongan-->
             <!--<div class="card border-success mb-3 ms-5" style="max-width: 540px; "-->
-                 <div class="row g-0">
-                     <div class="col-md-4">
-                         <img src="{{ img.image }}" class="card-img-top"alt="imagen">
-                     </div>
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img src="{{ img.image }}" class="card-img-top"alt="imagen">
+                    </div>
 
                     <div class="col-md-8">
                         <div class="card-body">
@@ -78,7 +85,7 @@
                             <p class="card-text list-group-item"><small class="text-body-secondary"><strong>Altura: {{ img.height }}</strong></small></p>
                             <p class="card-text list-group-item "><small class="text-body-secondary"><strong>Peso: {{ img.weight }}</strong></small></p>
                             <p class="card-text list-group-item"><small class="text-body-secondary"><strong>Nivel de experiencia base: {{ img.base }}</strong></small></p>
-                            <!--Noelia B. agrege a cada palabra(altura/peso/nivel) una etiqueta para que la letra y los numero  resalte-->
+                            <!--Noelia B. agrege a cada palabra(altura/peso/nivel) una etiqueta <strong> para que la letra y los numero  resalte-->
                             </ul>
                         </div>
                         {% if request.user.is_authenticated %}
